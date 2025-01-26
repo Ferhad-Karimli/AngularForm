@@ -1,0 +1,97 @@
+<form [formGroup]="studentForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Nömrəsi</mat-label>
+    <input
+      matInput
+      id="studentNumber"
+      formControlName="studentNumber"
+      type="number"
+      [required]="true"
+      appMaxLength="5"
+    />
+    <mat-error
+      *ngIf="
+        studentForm.get('studentNumber')?.hasError('required') &&
+        studentForm.get('studentNumber')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+
+    <mat-error
+      *ngIf="
+        studentForm.get('studentNumber')?.hasError('maxlength') &&
+        studentForm.get('studentNumber')?.touched
+      "
+    >
+      Maximum 5 digits are allowed.
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Dərsin adı</mat-label>
+    <input
+      matInput
+      id="studentName"
+      formControlName="studentName"
+      maxlength="30"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        studentForm.get('studentName')?.hasError('required') &&
+        studentForm.get('studentName')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Müəllimin adı </mat-label>
+    <input
+      matInput
+      id="studentSerName"
+      formControlName="studentSerName"
+      maxlength="30"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        studentForm.get('studentSerName')?.hasError('required') &&
+        studentForm.get('studentSerName')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Sinifi</mat-label>
+    <input
+      matInput
+      id="studentClass"
+      formControlName="studentClass"
+      type="number"
+      [required]="true"
+      appMaxLength="2"
+    />
+    <mat-error
+      *ngIf="
+        studentForm.get('studentClass')?.hasError('required') &&
+        studentForm.get('studentClass')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    class="btn"
+    mat-raised-button
+    type="submit"
+    [disabled]="studentForm.invalid"
+  >
+    Dərc et
+  </button>
+</form>

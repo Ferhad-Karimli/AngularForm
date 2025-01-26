@@ -1,0 +1,106 @@
+<form [formGroup]="lessonForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Dərsin kodu</mat-label>
+    <input
+      matInput
+      id="lessonCode"
+      formControlName="lessonCode"
+      maxlength="3"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        lessonForm.get('lessonCode')?.hasError('required') &&
+        lessonForm.get('lessonCode')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Dərsin adı</mat-label>
+    <input
+      matInput
+      id="lessonName"
+      formControlName="lessonName"
+      maxlength="30"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        lessonForm.get('lessonName')?.hasError('required') &&
+        lessonForm.get('lessonName')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Sinifi</mat-label>
+    <input
+      matInput
+      id="classNumber"
+      formControlName="classNumber"
+      type="number"
+      maxlength="2"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        lessonForm.get('classNumber')?.hasError('required') &&
+        lessonForm.get('classNumber')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Müəllimin adı </mat-label>
+    <input
+      matInput
+      id="teacherFirstName"
+      formControlName="teacherFirstName"
+      maxlength="20"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        lessonForm.get('teacherFirstName')?.hasError('required') &&
+        lessonForm.get('teacherFirstName')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Müəllimin soyadı </mat-label>
+    <input
+      matInput
+      id="teacherLastName"
+      formControlName="teacherLastName"
+      maxlength="20"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        lessonForm.get('teacherLastName')?.hasError('required') &&
+        lessonForm.get('teacherLastName')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    class="btn"
+    mat-raised-button
+    type="submit"
+    [disabled]="lessonForm.invalid"
+  >
+    Dərc et
+  </button>
+</form>

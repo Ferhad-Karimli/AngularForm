@@ -1,0 +1,99 @@
+<form [formGroup]="examForm" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Dərsin kodu</mat-label>
+    <input
+      matInput
+      id="lessonCode"
+      formControlName="lessonCode"
+      maxlength="3"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        examForm.get('lessonCode')?.hasError('required') &&
+        examForm.get('lessonCode')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label> Şagirdin nömrəsi</mat-label>
+    <input
+      matInput
+      id="studentNumber"
+      formControlName="studentNumber"
+      type="number"
+      [required]="true"
+      appMaxLength="5"
+    />
+    <mat-error
+      *ngIf="
+        examForm.get('studentNumber')?.hasError('required') &&
+        examForm.get('studentNumber')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+
+    <mat-error
+      *ngIf="
+        examForm.get('studentNumber')?.hasError('maxlength') &&
+        examForm.get('studentNumber')?.touched
+      "
+    >
+      Maximum 5 digits are allowed.
+    </mat-error>
+  </mat-form-field>
+  <!-- formControlName="examDate" -->
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>İmtahan tarixi</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      id="examDate"
+      formControlName="examDate"
+    />
+    <mat-hint>Ay/Gün/İl</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error
+      *ngIf="
+        examForm.get('examDate')?.hasError('required') &&
+        examForm.get('examDate')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="input-full-width" appearance="fill">
+    <mat-label>Qiyməti</mat-label>
+    <input
+      matInput
+      id="examResult"
+      formControlName="examResult"
+      type="number"
+      appMaxLength="1"
+      [required]="true"
+    />
+    <mat-error
+      *ngIf="
+        examForm.get('examResult')?.hasError('required') &&
+        examForm.get('examResult')?.touched
+      "
+    >
+      {{ requiredErrorMessage }}
+    </mat-error>
+  </mat-form-field>
+
+  <button
+    class="btn"
+    mat-raised-button
+    type="submit"
+    [disabled]="examForm.invalid"
+  >
+    Dərc et
+  </button>
+</form>
